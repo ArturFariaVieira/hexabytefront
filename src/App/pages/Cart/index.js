@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { Api } from "services/api";
 import Button from "shared/components/Button";
 import H1 from "shared/components/H1";
@@ -11,9 +11,10 @@ export default function Cart() {
   const [produtos, setProdutos] = useState(null);
   const [cleanup, setCleanup] = useState(false);
   const navigate = useNavigate();
+  const { itensCart, setItensCart } = useOutletContext();
 
   useEffect(() => {
-    Api.get("cart/product").then((r) => setProdutos(r.data));
+    Api.get("/cart/product").then((r) => setProdutos(r.data));
   }, [cleanup]);
 
   console.log(produtos);
@@ -27,6 +28,7 @@ export default function Cart() {
   async function remove(id) {
     const produtosRemovido = produtos.filter((p) => p._id != id);
     setProdutos(produtosRemovido);
+    setItensCart(itensCart - 1);
     await Api.delete(`/cart/remove/${id}`);
     setCleanup(true);
   }

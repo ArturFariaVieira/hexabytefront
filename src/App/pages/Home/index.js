@@ -1,27 +1,16 @@
-import { useAuth } from "context/AuthProvider/useAuth";
 import { useContext } from "react";
 import { siteContext } from "context/HomeContext/siteContext";
 import { useEffect, useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { Api } from "services/api";
 import useWindowDimensions from "shared/components/getWindowDimensions";
 import Loader from "shared/components/Loader";
 import styled from "styled-components";
-import Header from "shared/components/Header/Header.js";
 
 export default function Home() {
-  const auth = useAuth();
-  const {
-    categoria,
-    setCategoria,
-    page,
-    setPage,
-    search,
-    setSearch,
-    id,
-    setId,
-  } = useContext(siteContext);
-  const navigate = useNavigate();
+  const { categoria, setCategoria, page, setPage, search } =
+    useContext(siteContext);
+
   const [produtos, setProdutos] = useState([]);
   const [loading, setLoading] = useState(false);
   const { width } = useWindowDimensions();

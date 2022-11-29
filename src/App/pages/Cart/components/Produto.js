@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { FaTrash } from "react-icons/fa";
-
 export default function Produto({ produto, remove }) {
   return (
     <Container>
