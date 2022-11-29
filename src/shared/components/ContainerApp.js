@@ -19,7 +19,7 @@ export default function ContainerApp() {
   }, []);
 
   return (
-    <ContainerContext.Provider value={{ itensCart }}>
+    <ContainerContext.Provider value={{ itensCart, setItensCart }}>
       <Header />
       <DivApp>
         <Outlet context={{ itensCart, setItensCart }} />
@@ -31,4 +31,5 @@ export default function ContainerApp() {
 const DivApp = styled.div`
   padding: 25px;
   min-height: 100vh;
+  margin-top: 50px;
 `;

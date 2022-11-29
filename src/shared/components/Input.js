@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Input = styled.input`
-  background: rgb(255 255 255);
+  background: rgb(42 42 42);
   border-radius: 5px;
   border: ${(props) => (props.err == undefined ? "" : "solid 2px red")};
   outline: none;

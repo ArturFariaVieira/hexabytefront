@@ -7,4 +7,20 @@ export default Object.freeze({
     name: "cart",
     route: "/cart",
   },
+  CHECKOUT: {
+    name: "checkout",
+    route: "/checkout",
+  },
+  ADMIN: {
+    name: "admin",
+    route: "/admin",
+  },
+  ADDPRODUCT: {
+    name: "addproduct",
+    route: "/addproduct",
+  },
+  UPDATEPRODUCT: {
+    name: "updateproduct",
+    route: "/updateproduct/:productId",
+  },
 });

@@ -30,14 +30,17 @@ export default function Home() {
 
   useEffect(() => {
     setLoading(true);
-    if (categoria && categoria != "Home") {
+    console.log(categoria);
+    if (categoria && categoria != "Home" && categoria) {
+      console.log("AAAAAAAAAAAAAAAAA");
       Api.get(`/?page=${page}&categoria=${categoria}`).then((r) => {
         setProdutos(r.data);
         setLoading(false);
       });
     }
     if (categoria && categoria != "Home" && search)
-      console.log(`/?page=${page}&categoria=${categoria}&search=${search}`);
+      console.log("BBBBBBBBBBBBBBBBBBBB");
+    console.log(`/?page=${page}&categoria=${categoria}&search=${search}`);
     Api.get(`/?page=${page}&categoria=${categoria}&search=${search}`).then(
       (r) => {
         setProdutos(r.data);
@@ -45,6 +48,7 @@ export default function Home() {
       }
     );
     if (categoria == "Home") {
+      console.log("CCCCCCCCCCCCCC");
       Api.get(`/?page=1`).then((r) => {
         setLoading(false);
         setProdutos(r.data);
@@ -52,8 +56,9 @@ export default function Home() {
         setCategoria("");
       });
     }
-    if (!categoria && !search) {
-      Api.get(`/?page=${page}`)
+    if ((!categoria && !search) || categoria === "Sair") {
+      console.log("DDDDDDDDDDDDDDDDD");
+      Api.get(`/?page=${page ? page : 1}`)
         .then((r) => {
           setProdutos(r.data);
           setLoading(false);
@@ -73,7 +78,6 @@ export default function Home() {
 
   return (
     <>
-      <Header />
       <Loader loading={loading} />
       <FlexContainer>
         {produtos.length > 0

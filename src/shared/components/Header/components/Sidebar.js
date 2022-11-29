@@ -5,7 +5,9 @@ import SidebarItem from "./SidebarItem";
 import { sideicons } from "./Sidebaricons";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth } from "context/AuthProvider/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { MdAdminPanelSettings } from "react-icons/md";
+import SidebarItemOut from "./SideBarItemOut";
 
 const Sidebar = ({ active }) => {
   const icons = sideicons;
@@ -19,20 +21,30 @@ const Sidebar = ({ active }) => {
     <Container sidebar={active}>
       <FaTimes onClick={closeSidebar} />
       <Content>
-        {icons.map((icone) => (
+        {icons.map((icone, i) => (
           <SidebarItem
+            key={i}
             Text={icone.name}
             Icon={icone.icon}
             fecha={closeSidebar}
           />
         ))}
+        {auth.user.admin && (
+          <Link to={"/admin"}>
+            <SidebarItemOut
+              Text="Admin"
+              Icon={MdAdminPanelSettings}
+              fecha={closeSidebar}
+            />
+          </Link>
+        )}
         <div
           onClick={() => {
             auth.logout();
             navigation("/login");
           }}
         >
-          <SidebarItem
+          <SidebarItemOut
             Text="Sair"
             Icon={RiLogoutBoxLine}
             fecha={closeSidebar}

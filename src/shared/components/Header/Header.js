@@ -62,6 +62,7 @@ export default function Header() {
             fixPlaceHolder={sideBar}
             onChange={(e) => setSearch(e.target.value)}
             value={search}
+            placeholder="pesquise um produto"
           />
         </SearchMobile>
       )}
